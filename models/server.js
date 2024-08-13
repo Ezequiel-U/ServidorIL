@@ -1,7 +1,7 @@
 const express = require("express");
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require('cors');
-const bcrypt = require('bcrypt'); // Para encriptar contraseñas
+//const bcrypt = require('bcrypt'); // Para encriptar contraseñas
 const jwt = require('jsonwebtoken'); // Para manejar JWT
 const bodyParser = require('body-parser'); // Para manejar datos JSON en las solicitudes
 
@@ -49,7 +49,7 @@ class Server {
 
     routes(){
         // Ruta para registrar un nuevo usuario
-        this.app.post('/register', async (req, res) => {
+        /*this.app.post('/register', async (req, res) => {
             const { username, password, role } = req.body;
             if (!username || !password || !role) {
                 return res.status(400).send("Todos los campos son requeridos");
@@ -65,10 +65,10 @@ class Server {
                 console.error("Error al registrar usuario:", error);
                 res.status(500).send("Error al registrar usuario");
             }
-        });
+        });*/
 
         // Ruta para el inicio de sesión
-        this.app.post('/login', async (req, res) => {
+        /*this.app.post('/login', async (req, res) => {
             const { username, password } = req.body;
             if (!username || !password) {
                 return res.status(400).send("Username y password son requeridos");
@@ -89,7 +89,7 @@ class Server {
                 console.error("Error al iniciar sesión:", error);
                 res.status(500).send("Error al iniciar sesión");
             }
-        });
+        });*/
 
         // Rutas protegidas por autenticación
         this.app.get('/autos', this.verifyToken, this.verifyRole('user', 'admin'), async (req, res) => {
